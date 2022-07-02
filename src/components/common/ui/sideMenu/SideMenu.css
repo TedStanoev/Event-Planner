@@ -1,0 +1,23 @@
+.box-menu-style {
+    width: 250px;
+    overflow: auto;
+    height: 100%;
+    display: inline-flex;
+    align-items: center;
+    background-color: indigo;
+    border-right: 5px rgb(24, 3, 29);
+    /* border-top: 5px black; */
+    border-bottom: none;
+    border-left: none;
+    /* border-top-style: inset; */
+    border-right-style: inset;
+}
+
+.drawer-style {
+    background-color: black;
+    border: none
+}
+
+.drawer-paper-s {
+    background-color: black;
+}

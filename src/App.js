@@ -1,25 +1,38 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
+import { connect } from 'react-redux';
+import { Outlet } from 'react-router-dom';
+
 import './App.css';
 
-function App() {
+import Navigation from './components/navigation/Navigation';
+import { userSignedIn } from './redux/slices/authSlice';
+import { signInUser } from './api/auth';
+
+const App = props => {
+  useEffect(() => {
+    signInUser()
+      .then(user => {
+        console.log(`User:`);
+        console.log(user);
+        props.userSignedIn(user);
+      })
+      .then(() => console.log(props))
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navigation />
+      <Outlet />
     </div>
   );
 }
 
-export default App;
+const mapStateToProps = state => ({
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = dispatch => ({
+  userSignedIn: user => dispatch(userSignedIn(user)),
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,0 +1,14 @@
+.nav-bar {
+    background-color: indigo;
+    height: 60px;
+}
+
+.nav-search {
+    width: 30%;
+    background-color: #393333;
+    border: 2px groove black;
+    margin: 10px auto;
+    border-radius: 6px;
+    height: 35px;
+    color: white;
+}
