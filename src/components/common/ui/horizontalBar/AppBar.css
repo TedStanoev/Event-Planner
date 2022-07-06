@@ -1,14 +1,23 @@
 .nav-bar {
+    position: fixed;
+    width: 100%;
     background-color: indigo;
-    height: 60px;
+    height: 90px;
 }
 
-.nav-search {
-    width: 30%;
-    background-color: #393333;
-    border: 2px groove black;
-    margin: 10px auto;
-    border-radius: 6px;
-    height: 35px;
-    color: white;
+.c-navbar-brand {
+    display: inline-flex; 
+    padding: 10px;
+    height: 100%;
+    text-decoration: none;
+}
+
+.c-open-side-menu {
+    display: none;
+}
+
+@media only screen and (max-width: 425px) {
+    .c-open-side-menu {
+        display: inline;
+    }
 }

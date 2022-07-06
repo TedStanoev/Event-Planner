@@ -1,16 +1,31 @@
-.box-menu-style {
+#c-side-menu {
+    display: block;
+}
+
+.c-list-group-container {
     width: 250px;
     overflow: auto;
     height: 100%;
-    display: inline-flex;
     align-items: center;
     background-color: indigo;
     border-right: 5px rgb(24, 3, 29);
-    /* border-top: 5px black; */
     border-bottom: none;
     border-left: none;
-    /* border-top-style: inset; */
     border-right-style: inset;
+    margin-top: 90px;
+    position: fixed;
+}
+
+.c-list-item {
+    text-align: center;
+    padding: 10px;
+    border-bottom:rgb(24, 3, 29) 1px white;
+}
+
+@media only screen and (max-width: 425px) {
+    #c-side-menu {
+        display: none;
+    }
 }
 
 .drawer-style {

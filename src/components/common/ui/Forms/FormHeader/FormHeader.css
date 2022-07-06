@@ -1,0 +1,27 @@
+.header {
+    border-bottom: 2px dotted black;
+    padding: 10px 0;
+    display: inline-flex;
+    align-items: flex-end;
+    width: 100%;
+}
+
+h1 {
+    margin: 0 20px 0 0;
+    color: white;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.login-link-wrapper {
+    width: 100%;
+    text-align: center;
+}
+
+.login-link {
+    color: white;
+}
+
+.home-link {
+    margin-left: 20px;
+}

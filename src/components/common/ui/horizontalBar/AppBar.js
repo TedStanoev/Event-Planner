@@ -2,23 +2,26 @@ import React from 'react';
 import { 
   Navbar, 
   Container,
-  Form,
-  FormControl,
 } from 'react-bootstrap';
+import { Link } from 'react-router-dom'
 
 import './AppBar.css';
 
+import SearchWithFilter from '../SearchWithFilter/SearchWithFilter';
+import Logo from '../Logo/Logo';
+import SideMenuCollapsible from '../SideMenuCollapsible/SideMenuCollapsible'; 
+
 const AppBar = (props) => {
   return (
-    <Navbar fixed="top" className="nav-bar">
+    <Navbar className="nav-bar">
       <Container fluid style={{ height: 'inherit' }}>
-        <Form style={{ height: 'inherit' }}>
-          <FormControl 
-            className="nav-search"
-            type="search"
-            placeholder="Search"
-          />
-        </Form>
+        <Navbar.Brand href="/home" className="c-navbar-brand">
+          <Logo />
+        </Navbar.Brand>
+        <SideMenuCollapsible showMenu={props.openCloseSideMenu}/>
+        <SearchWithFilter />
+        <Link to="/register">Register</Link>
+        <Link to="/login">Log in</Link>
       </Container>
     </Navbar>
   )

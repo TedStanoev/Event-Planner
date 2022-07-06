@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { Container } from 'react-bootstrap';
 
 import './App.css';
 
@@ -22,7 +23,9 @@ const App = props => {
   return (
     <div className="App">
       <Navigation />
-      <Outlet />
+      <Container className="main-content">
+        <Outlet/>
+      </Container>
     </div>
   );
 }

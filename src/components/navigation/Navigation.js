@@ -1,4 +1,4 @@
-import React from 'react';
+import React,  {useState } from 'react';
 import { Link } from "react-router-dom";
 
 import './Navigation.css'
@@ -7,19 +7,20 @@ import SideMenu from '../common/ui/sideMenu/SideMenu'
 import AppBar from '../common/ui/horizontalBar/AppBar'
 
 const Navigation = (props) => {
+  const [open, setOpen] = useState(true);
+
   return (
     <React.Fragment>
-      <AppBar />
+      <AppBar 
+        openCloseSideMenu={() => setOpen(!open)}
+      />
       <SideMenu
-        variant="permanent"
-        anchor="left"
-        open={true}
+        open={open}
       >
-        <Link className="nav-link" to="/home">Home</Link>
-        <Link className="nav-link" to="/info">Create event</Link>
-        <Link className="nav-link" to="/info">My events</Link>
-        <Link className="nav-link" to="/info">Find events</Link>
-        <Link className="nav-link" to="/info">Info</Link>
+        <Link className="nav-link" to="/home">HOME</Link>
+        <Link className="nav-link" to="/info">ABOUT</Link>
+        <Link className="nav-link" to="/info">CREATE EVENT</Link>
+        <Link className="nav-link" to="/info">MY EVENTS</Link>
       </SideMenu>
     </React.Fragment>
   )
