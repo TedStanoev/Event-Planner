@@ -3,7 +3,8 @@ import {
   Navbar, 
   Container,
 } from 'react-bootstrap';
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { BoxArrowRight } from 'react-bootstrap-icons';
 
 import './AppBar.css';
 
@@ -12,6 +13,14 @@ import Logo from '../Logo/Logo';
 import SideMenuCollapsible from '../SideMenuCollapsible/SideMenuCollapsible'; 
 
 const AppBar = (props) => {
+  const navigate = useNavigate();
+
+  const onUserSignOut = async () => {
+    await props.signOutUser();
+
+    navigate('/', { replace: true });
+  }
+
   return (
     <Navbar className="nav-bar">
       <Container fluid style={{ height: 'inherit' }}>
@@ -22,6 +31,10 @@ const AppBar = (props) => {
         <SearchWithFilter />
         <Link to="/register">Register</Link>
         <Link to="/login">Log in</Link>
+        <BoxArrowRight 
+          size={20}
+          onClick={onUserSignOut}
+        />
       </Container>
     </Navbar>
   )

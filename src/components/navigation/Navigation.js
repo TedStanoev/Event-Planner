@@ -1,10 +1,13 @@
-import React,  {useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from "react-router-dom";
+import { connect } from 'react-redux';
 
 import './Navigation.css'
 
 import SideMenu from '../common/ui/sideMenu/SideMenu'
 import AppBar from '../common/ui/horizontalBar/AppBar'
+
+import { signoutUser } from '../../api/auth';
 
 const Navigation = (props) => {
   const [open, setOpen] = useState(true);
@@ -13,6 +16,8 @@ const Navigation = (props) => {
     <React.Fragment>
       <AppBar 
         openCloseSideMenu={() => setOpen(!open)}
+        user={props.user}
+        signOutUser={async () => props.dispatch(signoutUser())}
       />
       <SideMenu
         open={open}
@@ -26,4 +31,8 @@ const Navigation = (props) => {
   )
 }
 
-export default Navigation;
+const mapStateToProps = (state) => ({
+  user: state.auth.user
+})
+
+export default connect(mapStateToProps)(Navigation);

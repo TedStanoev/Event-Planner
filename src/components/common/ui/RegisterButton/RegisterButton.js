@@ -10,11 +10,18 @@ const RegisterButton = (props) => {
     useEffect(() => {
         if (props.disabled) {
             setBtnClasses([...btnClasses, 'disabled']);
+        } else {
+            setBtnClasses(['submit-register'])
         }
     }, [props.disabled])
 
     return (
-        <Button className={btnClasses.join(' ')} as={ArrowRightSquareFill} type="submit">
+        <Button 
+            className={btnClasses.join(' ')} 
+            as={ArrowRightSquareFill}
+            type="submit"
+            onClick={props.onClick}
+        >
 
       </Button>
     )

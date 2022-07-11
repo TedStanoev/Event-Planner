@@ -10,15 +10,15 @@ import { userSignedIn } from './redux/slices/authSlice';
 import { signInUser } from './api/auth';
 
 const App = props => {
-  useEffect(() => {
-    signInUser()
-      .then(user => {
-        console.log(`User:`);
-        console.log(user);
-        props.userSignedIn(user);
-      })
-      .then(() => console.log(props))
-  }, [])
+  // useEffect(() => {
+  //   signInUser()
+  //     .then(user => {
+  //       console.log(`User:`);
+  //       console.log(user);
+  //       props.userSignedIn(user);
+  //     })
+  //     .then(() => console.log(props))
+  // }, [])
 
   return (
     <div className="App">

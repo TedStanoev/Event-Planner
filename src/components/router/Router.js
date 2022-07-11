@@ -6,6 +6,7 @@ import App from '../../App'
 import Home from '../home/Home';
 import Info from '../information/Info';
 import Register from "../auth/register/Register";
+import Login from "../auth/login/Login";
 import PageNotFound from "../pageNotFound/PageNotFound";
 
 const Router = (props) => {
@@ -17,9 +18,8 @@ const Router = (props) => {
           <Route path="home" element={<Home />} />
           <Route path="info" element={<Info />} />
         </Route>
-        <Route path="/register" element={<Register />}>
-
-        </Route>
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
     </BrowserRouter>

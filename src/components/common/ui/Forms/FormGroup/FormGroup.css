@@ -4,7 +4,7 @@
     border: 2px solid black;
     color: white;
     height: 30px;
-    text-align: center;
+    /* text-align: center; */
     font-size: 20px;
 }
 
@@ -23,4 +23,11 @@
     color: white;
     font-weight: bold;
     text-transform: uppercase;
+}
+
+.c-invalid-icon {
+    color: black;
+    padding: 10px;
+    position: absolute;
+    right: 200px;
 }
