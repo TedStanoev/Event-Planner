@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
@@ -41,8 +42,8 @@ const Register = props => {
       setEmailIsValid(isValid);
     } else if (property === 'password') {
       let isValid = validatePassword(value);
-      isValid = isValid && validatePasswordsMatch(value, form.confirmPassword);
       setPasswordIsValid(isValid);
+      isValid = isValid && validatePasswordsMatch(value, form.confirmPassword);
       setPasswordsMatch(isValid);
     } else if (property === 'confirmPassword') {
       const isValid = validatePasswordsMatch(form.password, value);
@@ -97,4 +98,9 @@ const Register = props => {
   )
 }
 
-export default Register;
+const mapStateToProps = (state) => ({
+  user: state.auth.user,
+  error: state.auth.error,
+})
+
+export default connect(mapStateToProps)(Register);

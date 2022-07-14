@@ -1,12 +1,18 @@
 import { 
-  getAuth, 
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
   signOut
-} from 'firebase/auth'
+} from 'firebase/auth';
 
 import { auth } from '../app/app';
-import { userSignedIn, userSignInError, signOutUser } from '../redux/slices/authSlice';
+import { 
+  userSignedIn, 
+  userSignInError, 
+  signOutUser,
+  registeredUser,
+  registeredUserFail,
+} from '../redux/slices/authSlice';
+import { addToDatabase } from '../tools/database';
 
 // const adminCredentials = {
 //   email: 'administrator@mail.com',
@@ -46,9 +52,16 @@ export const registerUser = (email, password) =>
   async (dispatch) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
-      console.log(result);
+
+      const userData = result.user.providerData[0];
+      
+      console.log(userData);
+      addToDatabase('/users/', 'users', userData);
+
+      dispatch(registeredUser(userData))
     } catch (e) {
       console.log(e);
+      dispatch(registeredUserFail(e.message))
     }
   }
 

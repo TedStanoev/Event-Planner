@@ -29,12 +29,14 @@ const AppBar = (props) => {
         </Navbar.Brand>
         <SideMenuCollapsible showMenu={props.openCloseSideMenu}/>
         <SearchWithFilter />
-        <Link to="/register">Register</Link>
-        <Link to="/login">Log in</Link>
-        <BoxArrowRight 
-          size={20}
-          onClick={onUserSignOut}
-        />
+        {!props.user && <Link to="/register">Register</Link> }
+        {!props.user && <Link to="/login">Log in</Link>}
+        {
+          props.user && <BoxArrowRight 
+            size={20}
+            onClick={onUserSignOut}
+          />
+        }
       </Container>
     </Navbar>
   )
