@@ -24,7 +24,7 @@ const Navigation = (props) => {
       >
         <Link className="nav-link" to="/home">HOME</Link>
         <Link className="nav-link" to="/info">ABOUT</Link>
-        <Link className="nav-link" to="/info">CREATE EVENT</Link>
+        <Link className="nav-link" to="/create-event">CREATE EVENT</Link>
         <Link className="nav-link" to="/info">MY EVENTS</Link>
       </SideMenu>
     </React.Fragment>

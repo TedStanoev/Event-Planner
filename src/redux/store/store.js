@@ -4,6 +4,7 @@ import authReducer from '../slices/authSlice';
 import homeReducer from '../slices/homeSlice';
 import infoReducer from '../slices/infoSlice';
 import postsReducer from '../slices/postsSlice';
+import usersReducer from '../slices/usersSlice';
 
 const store = configureStore({
   reducer: {
@@ -11,6 +12,7 @@ const store = configureStore({
     posts: postsReducer,
     home: homeReducer,
     info: infoReducer,
+    users: usersReducer,
   }
 })
 

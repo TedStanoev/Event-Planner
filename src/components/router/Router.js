@@ -7,7 +7,14 @@ import Home from '../home/Home';
 import Info from '../information/Info';
 import Register from "../auth/register/Register";
 import Login from "../auth/login/Login";
+import RequireAuthentication from "../auth/require-authentication/RequireAuthentication";
 import PageNotFound from "../pageNotFound/PageNotFound";
+import CreateEvent from "../events/create-event/CreateEvent";
+
+const authenticate = (element) => 
+  <RequireAuthentication>
+    {element}
+  </RequireAuthentication>;
 
 const Router = (props) => {
   return (
@@ -17,6 +24,8 @@ const Router = (props) => {
           <Route index element={<Home />}/>
           <Route path="home" element={<Home />} />
           <Route path="info" element={<Info />} />
+          <Route path="create-event" element={authenticate(<CreateEvent />)}
+          />
         </Route>
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />

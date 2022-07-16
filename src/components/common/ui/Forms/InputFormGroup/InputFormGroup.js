@@ -2,12 +2,12 @@ import React from 'react';
 import { Form, InputGroup, Row, Col } from 'react-bootstrap';
 import { XCircleFill } from 'react-bootstrap-icons';
 
-import './FormGroup.css';
+import './InputFormGroup.css';
 
-const FormGroup = (props) => {
+const InputFormGroup = (props) => {
 
     return (
-        <Form.Group as={Row} className="c-form-group">
+        <Form.Group as={Row} className="c-form-group" style={{ display: props.nonInline ? 'block' : 'inline-flex' }}>
             <Form.Label className="form-label" column sm="2">
                 {props.label}
             </Form.Label>
@@ -23,6 +23,7 @@ const FormGroup = (props) => {
                         type={props.inputType} 
                         value={props.value}
                         onChange={props.changeValue}
+                        placeholder={props.placeholder}
                         plaintext 
                     />
                 </InputGroup>
@@ -31,4 +32,4 @@ const FormGroup = (props) => {
     )
 }
 
-export default FormGroup;
+export default InputFormGroup;

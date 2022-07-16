@@ -39,13 +39,6 @@ export const signInUser = (
     console.log(error.message);
     dispatch(userSignInError(error.message));
   }
-
-
-
-  // const { uid, refreshToken } = credentials.user;
-
-
-  // return { email, uid };
 }
 
 export const registerUser = (email, password) => 

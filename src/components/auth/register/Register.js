@@ -4,7 +4,7 @@ import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
 import FormHeader from '../../common/ui/Forms/FormHeader/FormHeader';
-import FormGroup from '../../common/ui/Forms/FormGroup/FormGroup';
+import InputFormGroup from '../../common/ui/Forms/InputFormGroup/InputFormGroup';
 import RegisterButton from '../../common/ui/RegisterButton/RegisterButton';
 
 import { validateEmail, validatePassword, validatePasswordsMatch } from '../utils/validators';
@@ -67,21 +67,21 @@ const Register = props => {
             linkText="Already have an account? Click here to log in!"
             linkPath="/login"
         />
-        <FormGroup 
+        <InputFormGroup 
             label="Email:"
             inputType="email"
             value={form.email}
             changeValue={(e) => setFormInputField(e, 'email')}
             invalid={!emailIsValid}
         />
-        <FormGroup 
+        <InputFormGroup 
             label="Password:"
             inputType="password"
             value={form.password}
             changeValue={(e) => setFormInputField(e, 'password')}
             invalid={!passwordIsValid}
         />
-        <FormGroup 
+        <InputFormGroup 
             label="Confirm Password:"
             inputType="password"
             value={form.confirmPassword}

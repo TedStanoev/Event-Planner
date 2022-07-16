@@ -14,7 +14,6 @@
 
 .c-form-group {
     padding: 20px 0;
-    display: inline-flex;
     width: 100%;
     justify-content: space-between;
 }
@@ -30,4 +29,9 @@
     padding: 10px;
     position: absolute;
     right: 200px;
+}
+
+.c-textarea {
+    height: 200px;
+    overflow: auto;
 }
