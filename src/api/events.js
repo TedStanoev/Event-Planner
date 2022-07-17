@@ -1,6 +1,16 @@
-import { addToDatabase } from "../tools/database";
+import { addToDatabase, getFromDatabase } from "../tools/database";
 import * as EVENT_STATUS from '../constants/eventStatus';
 import { uploadFile } from "../tools/fileStorage";
+
+export const getPublicEvents = () => 
+    async (dispatch) => {
+        try {
+            const results = await getFromDatabase('/events');
+            console.log(results);
+        } catch (error) {
+            
+        }
+    }
 
 export const createEvent = (data, currentUser, file) => 
     async (dispatch) => {

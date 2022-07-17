@@ -1,39 +1,35 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import { Container, Row, Col } from 'react-bootstrap';
 
-import './Home.css'
+import './Home.css';
 
-import logo from '../../logo.svg';
+import EventCard from '../events/EventCard';
 
-import { changeText } from '../../redux/slices/homeSlice'
+import { getPublicEvents } from '../../api/events';
 
 const Home = (props) => {
-  const [inputValue, setInputValue] = useState('');
-
-  const handleWelcomeTextChange = () => {
-    console.log(inputValue);
-    props.changeText(inputValue);
-  }
-
   return (
-    <div>
-      <header className="Home-header">
-        <img src={logo} className="Home-logo" alt="logo" />
-        <input value={inputValue} onChange={(ev) => setInputValue(ev.currentTarget.value)} />
-        <button onClick={handleWelcomeTextChange}>Change text</button>
-        <p>{props.user?.email ? `Welcome ${props.user.email}` : 'Log in'}</p>
-      </header>
-    </div>
+    <Container>
+      {props.events.length > 0 ? (
+        props.events.map((ev) => (
+          <Row>
+            <EventCard ev={ev} />
+          </Row>
+        ))
+      ) : (
+        <h1 id="no-events-heading">No Events Available!</h1>
+      )}
+    </Container>
   );
 };
 
-const mapStateToProps = state => ({
-  user: state.auth.user,
-  welcomeText: state.home.welcomeText,
+const mapStateToProps = (state) => ({
+  events: state.events.publicEvents,
 });
 
-const mapDispatchToProps = dispatch => ({
-  changeText: text => dispatch(changeText(text))
+const mapDispatchToProps = (dispatch) => ({
+  fetchEvents: () => dispatch(getPublicEvents())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

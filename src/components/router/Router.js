@@ -9,7 +9,7 @@ import Register from "../auth/register/Register";
 import Login from "../auth/login/Login";
 import RequireAuthentication from "../auth/require-authentication/RequireAuthentication";
 import PageNotFound from "../pageNotFound/PageNotFound";
-import CreateEvent from "../events/create-event/CreateEvent";
+import CreateEvent from "../events/CreateEvent";
 
 const authenticate = (element) => 
   <RequireAuthentication>

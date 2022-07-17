@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import moment from 'moment';
 
-import EventForm from '../../common/ui/event-form/EventForm';
-import { createEvent } from '../../../api/events';
+import EventForm from '../common/ui/event-form/EventForm';
+import { createEvent } from '../../api/events';
 
 const initialState = {
     title: '',
