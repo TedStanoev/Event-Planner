@@ -26,7 +26,7 @@ const Router = (props) => {
           <Route path={routes.home.path} element={<Home />} />
           <Route path="info" element={<Info />} />
           <Route path={routes.createEvent.path} element={authenticate(<CreateEvent />)}
-          />
+        />
         </Route>
         <Route path={routes.register.path} element={<Register />} />
         <Route path={routes.login.path} element={<Login />} />

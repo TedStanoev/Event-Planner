@@ -1,10 +1,11 @@
 import { 
   signInWithEmailAndPassword,
   createUserWithEmailAndPassword,
-  signOut
+  signOut,
 } from 'firebase/auth';
 
 import { auth } from '../config/app';
+import { LOGIN } from '../constants/errorMessages';
 import { 
   userSignedIn, 
   userSignInError, 
@@ -13,11 +14,6 @@ import {
   registeredUserFail,
 } from '../redux/slices/authSlice';
 import { addToDatabase } from '../tools/database';
-
-// const adminCredentials = {
-//   email: 'administrator@mail.com',
-//   password: 'jurko2'
-// };
 
 export const signInUser = (
   email,
@@ -34,10 +30,12 @@ export const signInUser = (
     const userData = credentials.user.providerData[0];
 
     localStorage.setItem('token', refreshToken);
-    dispatch(userSignedIn(userData));
+    await dispatch(userSignedIn(userData));
   } catch (error) {
     console.log(error.message);
-    dispatch(userSignInError(error.message));
+    console.log(error.code);
+    console.log(error.name);
+    await dispatch(userSignInError(LOGIN[error.code]));
   }
 }
 

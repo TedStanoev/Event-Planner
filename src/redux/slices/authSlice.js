@@ -15,6 +15,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     userSignInError(state, action) {
+      console.log('PAYLOAD:', action.payload)
       state.user = null;
       state.error = action.payload;
     },

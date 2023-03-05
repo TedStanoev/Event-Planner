@@ -1,85 +1,72 @@
-import React, { useState } from 'react';
-import { useNavigate } from "react-router-dom";
-import { connect } from 'react-redux';
-import { Form } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Container, Row } from 'react-bootstrap';
 
-import FormHeader from '../../components/common/ui/Forms/FormHeader/FormHeader';
-import InputFormGroup from '../../components/common/ui/Forms/InputFormGroup/InputFormGroup';
-import RegisterButton from '../../components/common/ui/RegisterButton/RegisterButton';
+import LoginForm from './form/LoginForm';
+import routes from '../../components/router/routes';
 
-import { validateEmail, validatePassword } from '../../components/auth/utils/validators';
 import { signInUser } from '../../api/auth';
+import FormHeader from '../../components/common/ui/Forms/FormHeader/FormHeader';
 
 const createInitialState = () => ({
   email: '',
   password: '',
 });
 
-const Login = props => {
+const Login = (props) => {
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.auth.user);
+  const error = useSelector(state => state.auth.error)
+  // const state = {
+  //   user: useSelector(state => state.auth.user)
+  // }
   const [form, setForm] = useState(createInitialState);
-  const [emailIsValid, setEmailIsValid] = useState(false);
-  const [passwordIsValid, setPasswordIsValid] = useState(false);
 
   const navigate = useNavigate();
 
-  const setFormInputField = (event, property) => {
-    const value = event.currentTarget.value;
-
-    setForm({ ...form, [property]: value });
-
-    if (property === 'email') {
-      const isValid = validateEmail(value);
-      setEmailIsValid(isValid);
-    } else if (property === 'password') {
-      const isValid = validatePassword(value);
-      setPasswordIsValid(isValid);
+  useEffect(() => {
+    if (user) {
+      navigate(routes.home.path, { replace: true });
     }
-  }
+  }, [user]);
 
   const handleSubmit = async () => {
     const { email, password } = form;
 
-    await props.dispatch(signInUser(email, password));
+    const result = await dispatch(signInUser(email, password));
 
-    if (!props.error) {
-      navigate('/', { replace: true });
-    }
-  }
+    console.log('result:', result)
+    console.log('redux:', user, error);
+
+    // if (error) {
+    //   navigate(routes.home.path, { replace: true });
+    // }
+  };
 
   return (
-    <Form style={{ margin: '5% 10%' }}>
-        <FormHeader 
-            heading="Login"
-            linkText="Don't have an account? Click here to register!"
-            linkPath="/register"
+    <div className="bg-purple-gradient d-flex min-heigth-100vh">
+      <Container className="align-content-center flex-wrap d-flex">
+        <FormHeader
+          heading="Login"
+          linkText="Don't have an account? Click here to register!"
+          linkPath={routes.register.path}
         />
-        <InputFormGroup 
-            label="Email:"
-            inputType="email"
-            value={form.email}
-            changeValue={(e) => setFormInputField(e, 'email')}
-            invalid={!emailIsValid}
+        <LoginForm
+          form={form}
+          setForm={setForm}
+          handleSubmit={handleSubmit}
+          error={error}
         />
-        <InputFormGroup 
-            label="Password:"
-            inputType="password"
-            value={form.password}
-            changeValue={(e) => setFormInputField(e, 'password')}
-            invalid={!passwordIsValid}
-        />
-
-      <RegisterButton 
-        disabled={[emailIsValid, passwordIsValid].some(p => !p)}
-        onClick={handleSubmit}
-      />
-
-    </Form>
-  )
-}
+      </Container>
+    </div>
+    
+  );
+};
 
 const mapStateToProps = (state) => ({
   user: state.auth.user,
   error: state.auth.error,
-})
+});
 
-export default connect(mapStateToProps)(Login);
+export default Login;
