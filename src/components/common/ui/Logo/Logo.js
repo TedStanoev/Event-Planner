@@ -10,7 +10,7 @@ const Logo = () => {
               size={25}
               className='c-logo'
             />
-            <h2 className='c-logo-heading'>EVENT PLANNER</h2>
+            <h2 className='c-logo-heading'>HangOut</h2>
         </span>
     )
 }

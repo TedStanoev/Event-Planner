@@ -1,38 +1,45 @@
 import React, { useState } from 'react';
-import { Link } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 
-import './Navigation.css'
-
-import SideMenu from '../common/ui/sideMenu/SideMenu'
-import AppBar from '../common/ui/horizontalBar/AppBar'
+import routes from '../router/routes';
+import Logo from '../common/ui/Logo/Logo';
 
 import { signoutUser } from '../../api/auth';
+
+import './Navigation.css';
+import NavigationLink from './nav-links/NavigationLink';
 
 const Navigation = (props) => {
   const [open, setOpen] = useState(true);
 
   return (
-    <React.Fragment>
-      <AppBar 
-        openCloseSideMenu={() => setOpen(!open)}
-        user={props.user}
-        signOutUser={async () => props.dispatch(signoutUser())}
-      />
-      <SideMenu
-        open={open}
-      >
-        <Link className="nav-link" to="/home">HOME</Link>
-        <Link className="nav-link" to="/info">ABOUT</Link>
-        <Link className="nav-link" to="/create-event">CREATE EVENT</Link>
-        <Link className="nav-link" to="/info">MY EVENTS</Link>
-      </SideMenu>
-    </React.Fragment>
-  )
-}
+    <Navbar expand="md" className="mb-3 bg-purple-gradient navigation">
+      <Container fluid>
+        <Navbar.Brand as={Link} to={routes.home.path} className="c-navbar-brand">
+          <Logo />
+        </Navbar.Brand>
+        <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
+        <Navbar.Offcanvas
+          id={`offcanvasNavbar-expand`}
+          aria-labelledby={`offcanvasNavbarLabel-expand-md`}
+          placement="end"
+        >
+          <Offcanvas.Body>
+            <Nav className="justify-content-end flex-grow-1 pe-3">
+              <NavigationLink to={routes.login.path} label="Login" />
+              <NavigationLink to={routes.register.path} label="Register" />
+            </Nav>
+          </Offcanvas.Body>
+        </Navbar.Offcanvas>
+      </Container>
+    </Navbar>
+  );
+};
 
 const mapStateToProps = (state) => ({
-  user: state.auth.user
-})
+  user: state.auth.user,
+});
 
 export default connect(mapStateToProps)(Navigation);

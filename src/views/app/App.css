@@ -1,14 +1,3 @@
 .App {
   color: white
 }
-
-.main-content {
-  padding-top: 90px;
-  padding-left: 250px;
-}
-
-@media only screen and (max-width: 425px) {
-  .main-content {
-    padding-left: 0;
-  }
-}
