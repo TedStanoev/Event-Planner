@@ -1,6 +1,6 @@
 import { ref, set, get, child, onValue } from 'firebase/database';
 
-import { db } from "../app/app";
+import { db } from "../config/app";
 
 const postsPath = 'posts/';
 const lastPostIdPath = 'posts/lastPostId';

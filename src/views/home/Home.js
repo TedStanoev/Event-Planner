@@ -4,7 +4,7 @@ import { Container, Row, Col } from 'react-bootstrap';
 
 import './Home.css';
 
-import EventCard from '../events/EventCard';
+import EventCard from '../../components/events/EventCard';
 
 import { getPublicEvents } from '../../api/events';
 

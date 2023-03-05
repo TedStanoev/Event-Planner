@@ -9,7 +9,7 @@ import {
     startAt,
 } from 'firebase/database';
 
-import { db } from '../app/app';
+import { db } from '../config/app';
 
 export const getFromDatabase = async (endpoint) => {
     const dbRef = ref(db);

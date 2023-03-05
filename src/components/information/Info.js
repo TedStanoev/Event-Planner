@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 
 import PostList from '../posts/PostList';
 import * as API from '../../api/posts'
-import { auth } from '../../app/app';
+import { auth } from '../../config/app';
 
 const Info = (props) => {
   const [inputValue, setInputValue] = useState('');

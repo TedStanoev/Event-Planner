@@ -2,11 +2,12 @@ import React from "react";
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './Router.css'
 
-import App from '../../App'
-import Home from '../home/Home';
+import routes from "./routes";
+import App from '../../views/app/App';
+import Home from '../../views/home/Home';
 import Info from '../information/Info';
-import Register from "../auth/register/Register";
-import Login from "../auth/login/Login";
+import Register from "../../views/register/Register";
+import Login from "../../views/login/Login";
 import RequireAuthentication from "../auth/require-authentication/RequireAuthentication";
 import PageNotFound from "../pageNotFound/PageNotFound";
 import CreateEvent from "../events/CreateEvent";
@@ -22,13 +23,13 @@ const Router = (props) => {
       <Routes>
         <Route path="/" element={<App />}>
           <Route index element={<Home />}/>
-          <Route path="home" element={<Home />} />
+          <Route path={routes.home.path} element={<Home />} />
           <Route path="info" element={<Info />} />
-          <Route path="create-event" element={authenticate(<CreateEvent />)}
+          <Route path={routes.createEvent.path} element={authenticate(<CreateEvent />)}
           />
         </Route>
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
+        <Route path={routes.register.path} element={<Register />} />
+        <Route path={routes.login.path} element={<Login />} />
         <Route path="*" element={<PageNotFound />}/>
       </Routes>
     </BrowserRouter>

@@ -5,9 +5,9 @@ import { Container } from 'react-bootstrap';
 
 import './App.css';
 
-import Navigation from './components/navigation/Navigation';
-import { userSignedIn } from './redux/slices/authSlice';
-import { signInUser } from './api/auth';
+import Navigation from '../../components/navigation/Navigation';
+import { userSignedIn } from '../../redux/slices/authSlice';
+import { signInUser } from '../../api/auth';
 
 const App = props => {
   // useEffect(() => {

@@ -1,6 +1,6 @@
 import { ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 
-import { storage } from '../app/app';
+import { storage } from '../config/app';
 
 export const getFile = async (path) => {
     const imgRef = ref(storage, path);

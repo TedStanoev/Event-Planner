@@ -4,7 +4,7 @@ import {
   signOut
 } from 'firebase/auth';
 
-import { auth } from '../app/app';
+import { auth } from '../config/app';
 import { 
   userSignedIn, 
   userSignInError, 

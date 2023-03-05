@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 
-import FormHeader from '../../common/ui/Forms/FormHeader/FormHeader';
-import InputFormGroup from '../../common/ui/Forms/InputFormGroup/InputFormGroup';
-import RegisterButton from '../../common/ui/RegisterButton/RegisterButton';
+import FormHeader from '../../components/common/ui/Forms/FormHeader/FormHeader';
+import InputFormGroup from '../../components/common/ui/Forms/InputFormGroup/InputFormGroup';
+import RegisterButton from '../../components/common/ui/RegisterButton/RegisterButton';
 
-import { validateEmail, validatePassword, validatePasswordsMatch } from '../utils/validators';
-import { registerUser } from '../../../api/auth';
+import { validateEmail, validatePassword, validatePasswordsMatch } from '../../components/auth/utils/validators';
+import { registerUser } from '../../api/auth';
 
 const createInitialState = () => ({
   email: '',
