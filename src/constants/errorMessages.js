@@ -4,4 +4,8 @@ export const LOGIN = {
   'auth/too-many-requests': 'You have exceeded the maximum retries. Please try again later',
   'auth/user-not-found': 'User was not found',
   default: 'Server error. Please try again later',
-}
+};
+
+export const REGISTER = {
+  'auth/email-already-in-use': 'A user with this email already exists',
+};

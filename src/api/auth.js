@@ -5,7 +5,7 @@ import {
 } from 'firebase/auth';
 
 import { auth } from '../config/app';
-import { LOGIN } from '../constants/errorMessages';
+import { LOGIN, REGISTER } from '../constants/errorMessages';
 import { 
   userSignedIn, 
   userSignInError, 
@@ -32,9 +32,6 @@ export const signInUser = (
     localStorage.setItem('token', refreshToken);
     await dispatch(userSignedIn(userData));
   } catch (error) {
-    console.log(error.message);
-    console.log(error.code);
-    console.log(error.name);
     await dispatch(userSignInError(LOGIN[error.code]));
   }
 }
@@ -50,9 +47,9 @@ export const registerUser = (email, password) =>
       addToDatabase('/users/', 'users', userData);
 
       dispatch(registeredUser(userData))
-    } catch (e) {
-      console.log(e);
-      dispatch(registeredUserFail(e.message))
+    } catch ({ code }) {
+      console.log(code);
+      dispatch(registeredUserFail(REGISTER[code]))
     }
   }
 

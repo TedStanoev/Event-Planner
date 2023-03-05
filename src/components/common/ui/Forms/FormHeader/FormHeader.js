@@ -4,6 +4,7 @@ import { HouseFill } from 'react-bootstrap-icons';
 
 import './FormHeader.css';
 import { Col, Row } from 'react-bootstrap';
+import routes from '../../../../router/routes';
 
 const FormHeader = (props) => {
   return (
@@ -15,7 +16,7 @@ const FormHeader = (props) => {
         <Link to={props.linkPath} className="login-link">{props.linkText}</Link>
       </Col>
       <Col className="d-flex justify-content-md-end justify-content-center">
-        <Link to="/home">
+        <Link to={routes.home.path}>
           <HouseFill className="house-icon" size={30}/>
         </Link>
       </Col>

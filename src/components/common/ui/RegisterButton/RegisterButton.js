@@ -19,7 +19,7 @@ const RegisterButton = (props) => {
     <ArrowRightSquareFill
       aria-disabled={props.disabled}
       className={btnClasses.join(' ')}
-      onClick={props.onClick}
+      onClick={props.disabled ? undefined : props.onClick}
     />
   );
 };

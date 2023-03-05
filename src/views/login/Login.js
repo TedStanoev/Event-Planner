@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 
 import LoginForm from './form/LoginForm';
 import routes from '../../components/router/routes';
@@ -15,15 +15,13 @@ const createInitialState = () => ({
 });
 
 const Login = (props) => {
-  const dispatch = useDispatch();
-  const user = useSelector(state => state.auth.user);
-  const error = useSelector(state => state.auth.error)
-  // const state = {
-  //   user: useSelector(state => state.auth.user)
-  // }
   const [form, setForm] = useState(createInitialState);
-
+  
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const user = useSelector(state => state.auth.user);
+  const error = useSelector(state => state.auth.error);
 
   useEffect(() => {
     if (user) {
@@ -34,14 +32,7 @@ const Login = (props) => {
   const handleSubmit = async () => {
     const { email, password } = form;
 
-    const result = await dispatch(signInUser(email, password));
-
-    console.log('result:', result)
-    console.log('redux:', user, error);
-
-    // if (error) {
-    //   navigate(routes.home.path, { replace: true });
-    // }
+    await dispatch(signInUser(email, password));
   };
 
   return (
@@ -63,10 +54,5 @@ const Login = (props) => {
     
   );
 };
-
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-  error: state.auth.error,
-});
 
 export default Login;
