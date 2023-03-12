@@ -1,6 +1,9 @@
 const routes = {
+    landing: {
+        path: '/',
+    },
     home: {
-        path: 'home',
+        path: '/home',
     },
     login: {
         path: '/login',
@@ -9,7 +12,7 @@ const routes = {
         path: '/register',
     },
     createEvent: {
-        path: 'create-event',
+        path: '/create-event',
     },
 };
 

@@ -1,20 +1,25 @@
 import React from 'react';
-import { connect } from 'react-redux';
+import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useLocation } from 'react-router-dom';
 
-const RequireAuthentication = (props) => {
-    const location = useLocation();
-    
-    if (!props.user) {
-        //add notification
-        return <Navigate to="/login" state={{ from: location }} replace />
-    }
+import { ReactComponent as LoadingSpinner } from '../../../assets/loading/loading.svg';
+import { auth } from '../../../config/app';
 
-    return props.children;
+const RequireAuthentication = (props) => {
+  const [user, loading, error] = useAuthState(auth);
+  const location = useLocation();
+
+  if (loading) {
+    return <LoadingSpinner className="d-flex m-auto" />;
+  }
+
+  
+  if (!user || error) {
+    // add notification
+    return <Navigate to="/login" state={{ from: location }} replace />;
+  }
+
+  return props.children;
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth.user
-})
-
-export default connect(mapStateToProps)(RequireAuthentication);
+export default RequireAuthentication;

@@ -1,23 +1,27 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
+import { useAuthState } from 'react-firebase-hooks/auth';
 
 import routes from '../router/routes';
 import Logo from '../common/ui/Logo/Logo';
-
-import { signoutUser } from '../../api/auth';
-
-import './Navigation.css';
 import NavigationLink from './nav-links/NavigationLink';
 
+import { signoutUser } from '../../api/auth';
+import { auth } from '../../config/app';
+
+import './Navigation.css';
+
 const Navigation = (props) => {
-  const [open, setOpen] = useState(true);
+  const [user] = useAuthState(auth);
+
+  const dispatch = useDispatch();
 
   return (
     <Navbar expand="md" className="mb-3 bg-purple-gradient navigation">
       <Container fluid>
-        <Navbar.Brand as={Link} to={routes.home.path} className="c-navbar-brand">
+        <Navbar.Brand as={Link} to={routes.landing.path} className="c-navbar-brand">
           <Logo />
         </Navbar.Brand>
         <Navbar.Toggle aria-controls={`offcanvasNavbar-expand`} />
@@ -27,10 +31,19 @@ const Navigation = (props) => {
           placement="end"
         >
           <Offcanvas.Body>
-            <Nav className="justify-content-end flex-grow-1 pe-3">
-              <NavigationLink to={routes.login.path} label="Login" />
-              <NavigationLink to={routes.register.path} label="Register" />
-            </Nav>
+            {!user && (
+              <Nav className="justify-content-end flex-grow-1">
+                <NavigationLink to={routes.login.path} label="Login" />
+                <NavigationLink to={routes.register.path} label="Register" />
+              </Nav>
+            )}
+            {user && (
+              <Nav className="justify-content-center flex-grow-1">
+                <NavigationLink to={routes.home.path} label="Home" />
+                <NavigationLink to={routes.createEvent.path} label="Create Event" />
+                <NavigationLink to={routes.landing.path} onClick={() => dispatch(signoutUser())} label="Logout" />
+              </Nav>
+            )}
           </Offcanvas.Body>
         </Navbar.Offcanvas>
       </Container>
@@ -38,8 +51,4 @@ const Navigation = (props) => {
   );
 };
 
-const mapStateToProps = (state) => ({
-  user: state.auth.user,
-});
-
-export default connect(mapStateToProps)(Navigation);
+export default Navigation;

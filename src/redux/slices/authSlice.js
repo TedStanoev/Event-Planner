@@ -1,7 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getAuth } from 'firebase/auth';
+
+import { app } from '../../config/app';
 
 const initialState = {
-  user: null,
+  user: getAuth(app).currentUser,
   error: null,
   newUser: null,
 };

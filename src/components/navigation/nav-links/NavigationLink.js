@@ -5,7 +5,14 @@ import { Link } from 'react-router-dom';
 import './NavigationLink.css';
 
 const NavigationLink = (props) => (
-  <Nav.Link as={Link} to={props.to} className="navigation-link">{props.label}</Nav.Link>
+  <Nav.Link
+    as={Link}
+    to={props.to}
+    onClick={props.onClick}
+    className="navigation-link"
+  >
+    {props.label}
+  </Nav.Link>
 );
 
 export default NavigationLink;

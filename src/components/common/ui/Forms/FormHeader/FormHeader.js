@@ -22,17 +22,6 @@ const FormHeader = (props) => {
       </Col>
     </Row>
   )
-    return (
-        <div className="header">
-            <h1>{props.heading}</h1>
-            <div className="login-link-wrapper">
-                <Link to={props.linkPath} className="login-link">{props.linkText}</Link>
-            </div>
-            <Link to="/home" className="home-link">
-                <HouseFill className="house-icon" size={30}/>
-            </Link>
-      </div>
-    )
 }
 
 export default FormHeader;
