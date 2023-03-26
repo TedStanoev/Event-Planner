@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-import { connect } from 'react-redux';
-import moment from 'moment';
+import { useDispatch } from 'react-redux';
+import dayjs from 'dayjs';
 
-import EventForm from '../common/ui/event-form/EventForm';
-import { createEvent } from '../../api/events';
+import HangoutForm from '../common/ui/hangout-form/HangoutForm';
+import { createEvent } from '../../api/hangouts/hangouts';
 
 const initialState = {
     title: '',
-    date: moment(),
+    date: dayjs(),
     description: '',
     imageSrc: '',
     users: [],
@@ -17,6 +17,8 @@ const CreateEvent = (props) => {
     const [event, setEvent] = useState(initialState);
     const [image, setImage] = useState(null);
     const [formIsValid, setIsValid] = useState(true);
+
+    const dispatch = useDispatch();
 
     const onChange = (ev, accessor) => {
         setEvent({ ...event, [accessor]: ev.target.value });
@@ -42,11 +44,11 @@ const CreateEvent = (props) => {
             return;
         }
 
-        await props.createEvent(event, props.user, image);
+        await dispatch(createEvent(event, props.user, image));
     }
 
     return (
-        <EventForm 
+        <HangoutForm 
             eventTitleValue={event.title}
             onEventTitleChange={(e) => onChange(e, 'title')}
             eventDescriptionValue={event.description}
@@ -63,12 +65,4 @@ const CreateEvent = (props) => {
     )
 };
 
-const mapStateToProps = (state) => ({
-    user: state.auth.user,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-    createEvent: (event, user, image) => dispatch(createEvent(event, user, image)) 
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(CreateEvent);
+export default CreateEvent;

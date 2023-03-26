@@ -21,7 +21,7 @@ const Login = (props) => {
   const navigate = useNavigate();
 
   const user = useSelector(state => state.auth.user);
-  const error = useSelector(state => state.auth.error);
+  const error = useSelector(state => state.auth.loginError);
 
   useEffect(() => {
     if (user) {

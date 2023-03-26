@@ -16,7 +16,7 @@ const FormHeader = (props) => {
         <Link to={props.linkPath} className="login-link">{props.linkText}</Link>
       </Col>
       <Col className="d-flex justify-content-md-end justify-content-center">
-        <Link to={routes.home.path}>
+        <Link to={routes.landing.path}>
           <HouseFill className="house-icon" size={30}/>
         </Link>
       </Col>

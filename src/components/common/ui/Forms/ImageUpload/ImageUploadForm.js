@@ -1,27 +1,42 @@
 import React from 'react';
-import { Form, Figure } from 'react-bootstrap';
+import { Form, Figure, Row } from 'react-bootstrap';
+
+import { ReactComponent as ImagePlaceholder } from '../../../../../assets/imagePlaceholder.svg';
 
 const ImageUploadForm = (props) => {
-
-    return (
-        <React.Fragment>
-            <Figure>
-                <Figure.Image 
-                    width={props.imageWidth ? props.imageWidth : 500}
-                    height={props.imageHeight ? props.imageHeight : 300}
-                    //alt={props.imageAlt}
-                    alt='No image'
-                    src={props.imageSrc}
-                />
-            </Figure>
-            <Form.Label>{props.label}</Form.Label>
-            <Form.Control 
-                type="file" 
-                value={props.imageValue}
-                onChange={props.onChange}
+  return (
+    <div className="d-flex flex-column w-100">
+      <Row className="justify-content-center border">
+        {props.imageSrc ? (
+          <Figure
+            style={{
+              height: 281,
+            }}
+          >
+            <Figure.Image
+              style={{
+                maxWidth: 500,
+                maxHeight: 281,
+              }}
+              //alt={props.imageAlt}
+              alt="No image"
+              src={props.imageSrc}
             />
-        </React.Fragment>
-    )
-}
+          </Figure>
+        ) : (
+          <ImagePlaceholder width={500} height={281} />
+        )}
+      </Row>
+      <Row>
+        <Form.Label>{props.label}</Form.Label>
+        <Form.Control
+          type="file"
+          value={props.imageValue}
+          onChange={props.onChange}
+        />
+      </Row>
+    </div>
+  );
+};
 
 export default ImageUploadForm;

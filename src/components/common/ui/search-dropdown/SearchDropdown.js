@@ -1,31 +1,36 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React, { useCallback } from 'react';
+import { Col, Form } from 'react-bootstrap';
 import SelectSearch from 'react-select-search';
 
-import '../Forms/InputFormGroup/InputFormGroup.css';
+import './SearchDropdown.css';
+import 'react-select-search/style.css';
 
-const SearchDropdown = (props) => {
-    const setOptions = () => {
-        const { optionKey, optionValue } = props;
-        return props.options.map(o => ({ ...o, value: o[optionValue], name: o[optionKey] }))
-    }
+const SearchDropdown = ({label, optionKey, optionValue, ...props}) => {
+    const setOptions = useCallback(() => {
+      return props.options ? props.options.map(o => ({ ...o, value: o[optionValue], name: o[optionKey] })) : []
+    }, [props.options, optionKey, optionValue]);
     
     return (
-        <React.Fragment>
-            <Form.Label className="form-label" column sm="2">
-                {props.label}
-            </Form.Label>
-            <SelectSearch 
+        <Form.Group>
+            <Col>
+              <Form.Label className="form-label">
+                  {label}
+              </Form.Label>
+            </Col>
+            <Col>
+              <SelectSearch 
+                className="c-input-wrapper"
                 placeholder={props.placeholder}
                 multiple={props.multiple} 
-                onChange={props.onSelect}
+                onChange={props.onChange}
                 emptyMessage={props.emptyMessage}
                 value={props.value}
                 options={setOptions()}
-                printOptions="on-focus"
-                search
-            />
-        </React.Fragment>
+                printOptions="auto"
+                search={true}
+              />
+            </Col>
+        </Form.Group>
     )
 }  
 

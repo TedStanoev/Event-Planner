@@ -4,9 +4,11 @@ import {
     push,
     update,
     get,
+    orderByValue,
     query,
     limitToFirst,
     startAt,
+    equalTo,
 } from 'firebase/database';
 
 import { db } from '../config/app';
@@ -24,6 +26,6 @@ export const getFromDatabase = async (endpoint) => {
 export const addToDatabase = (endpoint, entity, data) => {
     const newKey = push(child(ref(db), entity)).key;
     const fullEndpoint = `${endpoint}${newKey}`;
-
+    
     return update(ref(db), { [fullEndpoint]: data });
 }

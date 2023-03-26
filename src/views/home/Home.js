@@ -6,7 +6,7 @@ import './Home.css';
 
 import EventCard from '../../components/events/EventCard';
 
-import { getPublicEvents } from '../../api/events';
+import { getPublicHangouts } from '../../api/hangouts/hangouts';
 
 const Home = (props) => {
   return (
@@ -29,7 +29,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchEvents: () => dispatch(getPublicEvents())
+  fetchEvents: () => dispatch(getPublicHangouts())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);

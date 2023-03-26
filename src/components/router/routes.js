@@ -11,8 +11,8 @@ const routes = {
     register: {
         path: '/register',
     },
-    createEvent: {
-        path: '/create-event',
+    createHangout: {
+        path: '/create-hangout',
     },
 };
 

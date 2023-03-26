@@ -1,0 +1,10 @@
+.c-input-wrapper__input {
+    width: 100%;
+    background-color: transparent;
+    border: 1px solid white;
+    color: white;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    padding-left: 1rem;
+}

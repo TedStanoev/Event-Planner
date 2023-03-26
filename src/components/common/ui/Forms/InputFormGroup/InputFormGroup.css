@@ -4,13 +4,12 @@
     border: 1px solid white;
     color: white;
     height: 40px;
-    text-align: center;
     font-size: 20px;
     border-radius: 10px;
+    padding-left: 1rem;
 }
 
 .c-input-wrapper {
-    width: 60%;
 }
 
 .c-form-group {

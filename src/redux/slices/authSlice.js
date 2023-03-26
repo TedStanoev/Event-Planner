@@ -5,7 +5,9 @@ import { app } from '../../config/app';
 
 const initialState = {
   user: getAuth(app).currentUser,
-  error: null,
+  loginError: null,
+  registerError: null,
+  logoutError: null,
   newUser: null,
 };
 
@@ -15,24 +17,25 @@ const authSlice = createSlice({
   reducers: {
     userSignedIn(state, action) {
       state.user = action.payload;
-      state.error = null;
+      state.loginError = null;
     },
     userSignInError(state, action) {
-      console.log('PAYLOAD:', action.payload)
       state.user = null;
-      state.error = action.payload;
+      state.loginError = action.payload;
     },
     signOutUser(state, action) {
       state.user = null;
-      state.error = null;
+      state.logoutError = null;
+      state.loginError = null;
+      state.registerError = null;
     },
     registeredUser(state, action) {
       state.newUser = action.payload;
-      state.error = null;
+      state.registerError = null;
     },
     registeredUserFail(state, action) {
       state.newUser = null;
-      state.error = action.payload;
+      state.registerError = action.payload;
     }
   },
 });

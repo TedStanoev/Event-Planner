@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   users: null,
   error: null,
+  filteredUsers: null,
 };
 
 const usersSlice = createSlice({
@@ -20,10 +21,10 @@ const usersSlice = createSlice({
     clearUsers(state, action) {
       state.users = null;
       state.error = null;
-    }
+    },
   },
 });
 
-export const { fetchedUsers, fetchedUsersFail, clearUsers } = usersSlice.actions;
+export const { fetchedUsers, fetchedUsersFail, clearUsers, filterUsers } = usersSlice.actions;
 
 export default usersSlice.reducer;

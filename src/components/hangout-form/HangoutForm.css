@@ -1,0 +1,10 @@
+.selected-users-container {
+    border: 1px solid #ff72ff70;
+    border-radius: 5px;
+    min-height: 8rem;
+}
+
+.selected-user-field {
+    border: 1px solid purple;
+    border-radius: 5px;
+}

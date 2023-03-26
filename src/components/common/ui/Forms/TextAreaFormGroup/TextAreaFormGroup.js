@@ -16,6 +16,7 @@ const TextAreaFormGroup = (props) => {
                         className="c-input-field c-textarea" 
                         type="text"
                         as="textarea"
+                        name={props.name}
                         value={props.value}
                         onChange={props.changeValue}
                         placeholder={props.placeholder}

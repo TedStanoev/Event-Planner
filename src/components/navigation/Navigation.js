@@ -40,7 +40,7 @@ const Navigation = (props) => {
             {user && (
               <Nav className="justify-content-center flex-grow-1">
                 <NavigationLink to={routes.home.path} label="Home" />
-                <NavigationLink to={routes.createEvent.path} label="Create Event" />
+                <NavigationLink to={routes.createHangout.path} label="Create Hangout" />
                 <NavigationLink to={routes.landing.path} onClick={() => dispatch(signoutUser())} label="Logout" />
               </Nav>
             )}

@@ -13,7 +13,7 @@ import {
   registeredUser,
   registeredUserFail,
 } from '../redux/slices/authSlice';
-import { addToDatabase } from '../tools/database';
+import { addToDatabase, addToDatabseWithCustomKey } from '../tools/database';
 
 export const signInUser = (
   email,
@@ -36,20 +36,21 @@ export const signInUser = (
   }
 }
 
-export const registerUser = (email, password) => 
+export const registerUser = (email, password, username) => 
   async (dispatch) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
 
       const userData = result.user.providerData[0];
-      
-      console.log(userData);
+
       addToDatabase('/users/', 'users', userData);
 
-      dispatch(registeredUser(userData))
+      await dispatch(registeredUser(userData));
     } catch ({ code }) {
       console.log(code);
-      dispatch(registeredUserFail(REGISTER[code]))
+      await dispatch(registeredUserFail(REGISTER[code]));
+
+      return { error: code }
     }
   }
 

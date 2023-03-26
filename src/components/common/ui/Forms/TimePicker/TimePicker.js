@@ -1,10 +1,7 @@
 import React from 'react';
-import { Form, InputGroup, Row, Col } from 'react-bootstrap';
-import { XCircleFill } from 'react-bootstrap-icons';
+import { Col, Form, InputGroup, Row } from 'react-bootstrap';
 
-import './InputFormGroup.css';
-
-const InputFormGroup = (props) => {
+const TimePicker = (props) => {
   return (
     <Form.Group
       as={Row}
@@ -12,17 +9,10 @@ const InputFormGroup = (props) => {
       style={{ display: props.nonInline ? 'block' : 'inline-flex' }}
     >
       <Col>
-        <Form.Label className="form-label">
-          {props.label}
-        </Form.Label>
+        <Form.Label className="form-label">{props.label}</Form.Label>
       </Col>
       <Col className="c-input-wrapper">
         <InputGroup>
-          <XCircleFill
-            style={{ display: props.invalid ? 'block' : 'none' }}
-            className="c-invalid-icon"
-            size={15}
-          />
           <Form.Control
             name={props.name}
             className="c-input-field"
@@ -38,4 +28,4 @@ const InputFormGroup = (props) => {
   );
 };
 
-export default InputFormGroup;
+export default TimePicker;

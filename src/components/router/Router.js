@@ -8,9 +8,9 @@ import Info from '../information/Info';
 import Register from "../../views/register/Register";
 import Login from "../../views/login/Login";
 import RequireAuthentication from "../auth/require-authentication/RequireAuthentication";
-import PageNotFound from "../pageNotFound/PageNotFound";
-import CreateEvent from "../events/CreateEvent";
+import PageNotFound from "../../views/pageNotFound/PageNotFound";
 import LandingPage from "../../views/landing/LandingPage";
+import CreateHangout from "../../views/hangouts/CreateHangout";
 
 import './Router.css'
 
@@ -27,7 +27,7 @@ const Router = (props) => {
           <Route index element={<LandingPage />} />
           <Route path={routes.home.path} element={authenticate(<Home />)} />
           <Route path="info" element={<Info />} />
-          <Route path={routes.createEvent.path} element={authenticate(<CreateEvent />)}
+          <Route path={routes.createHangout.path} element={authenticate(<CreateHangout />)}
         />
         </Route>
         <Route path={routes.register.path} element={<Register />} />

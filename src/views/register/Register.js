@@ -13,6 +13,7 @@ import RegisterForm from './form/RegisterForm';
 import routes from '../../components/router/routes';
 
 const createInitialState = () => ({
+  username: '',
   email: '',
   password: '',
   confirmPassword: '',
@@ -25,7 +26,7 @@ const Register = props => {
   const navigate = useNavigate();
 
   const user = useSelector(state => state.auth.user);
-  const error = useSelector(state => state.auth.error);
+  const error = useSelector(state => state.auth.registerError);
 
   useEffect(() => {
     if (user) {
@@ -34,9 +35,13 @@ const Register = props => {
   }, [user]);
 
   const handleSubmit = async () => {
-    const { email, password } = form;
+    const { email, password, username } = form;
 
-    await dispatch(registerUser(email, password));
+    const result = await dispatch(registerUser(email, password, username));
+
+    if (!result.error) {
+      navigate(routes.login.path);
+    }
   }
 
   return (
