@@ -11,12 +11,12 @@ const InputFormGroup = (props) => {
       className="c-form-group"
       style={{ display: props.nonInline ? 'block' : 'inline-flex' }}
     >
-      <Col>
+      <Col {...props.labelColProps}>
         <Form.Label className="form-label">
           {props.label}
         </Form.Label>
       </Col>
-      <Col className="c-input-wrapper">
+      <Col className="c-input-wrapper" {...props.inputColProps}>
         <InputGroup>
           <XCircleFill
             style={{ display: props.invalid ? 'block' : 'none' }}

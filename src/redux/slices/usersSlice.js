@@ -4,6 +4,8 @@ const initialState = {
   users: null,
   error: null,
   filteredUsers: null,
+  editUser: null,
+  editError: null,
 };
 
 const usersSlice = createSlice({
@@ -22,9 +24,17 @@ const usersSlice = createSlice({
       state.users = null;
       state.error = null;
     },
+    editUser(state, action) {
+      state.editUser = action.payload;
+      state.editError = null;
+    },
+    editUserFail(state, action) {
+      state.editUser = null;
+      state.editError = action.payload;
+    }
   },
 });
 
-export const { fetchedUsers, fetchedUsersFail, clearUsers, filterUsers } = usersSlice.actions;
+export const { fetchedUsers, fetchedUsersFail, clearUsers, filterUsers, editUser, editUserFail } = usersSlice.actions;
 
 export default usersSlice.reducer;

@@ -4,11 +4,6 @@ import {
     push,
     update,
     get,
-    orderByValue,
-    query,
-    limitToFirst,
-    startAt,
-    equalTo,
 } from 'firebase/database';
 
 import { db } from '../config/app';
@@ -28,4 +23,18 @@ export const addToDatabase = (endpoint, entity, data) => {
     const fullEndpoint = `${endpoint}${newKey}`;
     
     return update(ref(db), { [fullEndpoint]: data });
+}
+
+export const updateDatabase = (endpoint, data) => {
+    const key = data.uid;
+
+    const updates = {
+      ...Object.keys(data).map(k => ({
+        [`${endpoint}/${key}/${k}`]: {
+          ...data[k]
+        }
+      }))
+    };
+
+    return update(ref(db), updates);
 }

@@ -13,6 +13,7 @@ import LandingPage from "../../views/landing/LandingPage";
 import CreateHangout from "../../views/hangouts/CreateHangout";
 
 import './Router.css'
+import EditProfile from "../../views/profile/EditProfile";
 
 const authenticate = (element) => 
   <RequireAuthentication>
@@ -27,8 +28,8 @@ const Router = (props) => {
           <Route index element={<LandingPage />} />
           <Route path={routes.home.path} element={authenticate(<Home />)} />
           <Route path="info" element={<Info />} />
-          <Route path={routes.createHangout.path} element={authenticate(<CreateHangout />)}
-        />
+          <Route path={routes.createHangout.path} element={authenticate(<CreateHangout />)} />
+          <Route path={routes.editProfile.path} element={authenticate(<EditProfile />)} />
         </Route>
         <Route path={routes.register.path} element={<Register />} />
         <Route path={routes.login.path} element={<Login />} />

@@ -14,6 +14,7 @@ import {
   registeredUserFail,
 } from '../redux/slices/authSlice';
 import { addToDatabase, addToDatabseWithCustomKey } from '../tools/database';
+import { getFile } from '../tools/fileStorage';
 
 export const signInUser = (
   email,
@@ -27,10 +28,11 @@ export const signInUser = (
     }
 
     const { refreshToken } = credentials.user;
+    
     const userData = credentials.user.providerData[0];
 
     localStorage.setItem('token', refreshToken);
-    await dispatch(userSignedIn(userData));
+    await dispatch(userSignedIn({ ...userData }));
   } catch (error) {
     await dispatch(userSignInError(LOGIN[error.code]));
   }

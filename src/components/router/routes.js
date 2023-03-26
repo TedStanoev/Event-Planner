@@ -14,6 +14,9 @@ const routes = {
     createHangout: {
         path: '/create-hangout',
     },
+    editProfile: {
+        path: '/edit-profile/:userUID',
+    },
 };
 
 export default routes;

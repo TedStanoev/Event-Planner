@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { generatePath, Link } from 'react-router-dom';
 import { Container, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -12,6 +12,7 @@ import { signoutUser } from '../../api/auth';
 import { auth } from '../../config/app';
 
 import './Navigation.css';
+import ProfileLink from './profile-link/ProfileLink';
 
 const Navigation = (props) => {
   const [user] = useAuthState(auth);
@@ -38,9 +39,10 @@ const Navigation = (props) => {
               </Nav>
             )}
             {user && (
-              <Nav className="justify-content-center flex-grow-1">
+              <Nav className="justify-content-start flex-grow-1">
                 <NavigationLink to={routes.home.path} label="Home" />
                 <NavigationLink to={routes.createHangout.path} label="Create Hangout" />
+                <ProfileLink to={generatePath(routes.editProfile.path, { userUID: user.uid })} user={user.providerData[0]} />
                 <NavigationLink to={routes.landing.path} onClick={() => dispatch(signoutUser())} label="Logout" />
               </Nav>
             )}

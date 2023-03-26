@@ -3,10 +3,12 @@ import { Form, Figure, Row } from 'react-bootstrap';
 
 import { ReactComponent as ImagePlaceholder } from '../../../../../assets/imagePlaceholder.svg';
 
+import "./ImageUploadForm.css";
+
 const ImageUploadForm = (props) => {
   return (
     <div className="d-flex flex-column w-100">
-      <Row className="justify-content-center border">
+      <Row className="justify-content-center border p-5 image-upload-form-container ">
         {props.imageSrc ? (
           <Figure
             style={{

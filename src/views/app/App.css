@@ -1,3 +1,8 @@
 .App {
   color: white
 }
+
+.profile-avatar {
+  border: 1px solid;
+  border-radius: 20px;
+}
